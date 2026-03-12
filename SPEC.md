@@ -1,4 +1,4 @@
-# ArogyaSync Website — Specification & Reference
+# ArogyaSync Marketing Website — Specification & Reference
 
 > **Last updated:** 2026-03-02
 > Quick-reference document. Read this to get full context without scanning every source file.
@@ -22,7 +22,7 @@ Public-facing marketing website for the ArogyaSync platform. Showcases product f
 ## 3. Project Structure
 
 ```
-ArogyaSync_Website/
+ArogyaSync_Marketing_Website/
 ├── src/
 │   ├── app/                # Next.js App Router pages
 │   ├── components/         # React components
