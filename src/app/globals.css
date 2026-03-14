@@ -77,3 +77,20 @@ body {
     transform: rotateY(180deg);
   }
 }
+
+/* REM-061: Respect user's motion preferences (WCAG 2.1 Level AA) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Disable transforms that create motion */
+  .btn-primary:hover {
+    transform: none !important;
+  }
+}
