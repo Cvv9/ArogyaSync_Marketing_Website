@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
+import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { Linkedin, Mail, Cpu, Activity, Star, Award, Users } from "lucide-react";
 
@@ -174,11 +175,13 @@ const LeaderCard: React.FC<{ member: Leader; index: number; active: boolean }> =
 
       {/* Photo / avatar */}
       <div className="relative z-10 flex-shrink-0 flex flex-col items-center gap-3">
-                    <img
-            src={member.image}
-            alt={member.name}
-            className="w-[120px] h-[120px] object-cover rounded-[24px]"
-            />
+        <Image
+          src={member.image}
+          alt={`Portrait of ${member.name}, ${member.role} at ArogyaSync`}
+          width={120}
+          height={120}
+          className="object-cover rounded-[24px]"
+        />
         {/* Social links */}
         <div className="flex gap-2">
           {[Linkedin, Mail].map((SIcon, si) => (

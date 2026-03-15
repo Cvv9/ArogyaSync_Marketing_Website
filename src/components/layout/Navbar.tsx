@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowRight, Activity, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/Button";
@@ -28,14 +29,19 @@ type LogoMarkProps = {
 const LogoMark = ({ scrolled }:LogoMarkProps) => (
   <Link href="/" className="flex items-center gap-2.5 group flex-shrink-0">
     {/* Image logo */}
-    <motion.img
-      src="/images/Gemini_Generated_Image_t3awcgt3awcgt3aw-removebg-preview.png"
-      alt="ArogyaSync"
-      className="h-8 w-auto object-contain transition-all duration-300"
-      style={{ filter: scrolled ? "none" : "none" }}
+    <motion.div
       whileHover={{ scale: 1.04 }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
-    />
+    >
+      <Image
+        src="/images/Gemini_Generated_Image_t3awcgt3awcgt3aw-removebg-preview.png"
+        alt="ArogyaSync - Clinical IoT Monitoring Platform Logo"
+        width={128}
+        height={32}
+        className="h-8 w-auto object-contain transition-all duration-300"
+        priority
+      />
+    </motion.div>
 
     {/* Live dot */}
     <div className="hidden sm:flex items-center gap-1 px-2 py-0.5 rounded-full"

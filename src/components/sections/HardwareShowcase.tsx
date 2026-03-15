@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 export function HardwareShowcase() {
@@ -20,16 +21,14 @@ export function HardwareShowcase() {
                         className="group"
                     >
                         <div className="aspect-video bg-navy-dark rounded-[32px] overflow-hidden border border-white/5 shadow-2xl flex items-center justify-center relative group">
-  
-                        <img
-                            src="/images/arogyasync_front.png"
-                            alt="Front View OCR Sensor"
-                            className="w-full h-full object-cover"
-                        />
-
-  <div className="absolute inset-0 bg-emerald/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-</div>
+                            <Image
+                                src="/images/arogyasync_front.png"
+                                alt="ArogyaSync Retrofit Device - Front view showing high-precision OCR sensor designed for medical display compatibility"
+                                fill
+                                className="object-cover"
+                            />
+                            <div className="absolute inset-0 bg-emerald/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
                         <p className="mt-6 text-navy-dark/60 font-medium">Detailed view of the high-precision sensor designed for medical display compatibility.</p>
                     </motion.div>
 
@@ -40,17 +39,15 @@ export function HardwareShowcase() {
                         transition={{ delay: 0.1 }}
                         className="group"
                     >
-                       <div className="aspect-video bg-navy-dark rounded-[32px] overflow-hidden border border-white/5 shadow-2xl flex items-center justify-center relative group">
-  
-                                    <img
-                                        src="/images/deviceconnected.png"
-                                        alt="Front View OCR Sensor"
-                                        className="w-full h-full object-cover"
-                                    />
-
-  <div className="absolute inset-0 bg-emerald/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-</div>
+                        <div className="aspect-video bg-navy-dark rounded-[32px] overflow-hidden border border-white/5 shadow-2xl flex items-center justify-center relative group">
+                            <Image
+                                src="/images/deviceconnected.png"
+                                alt="ArogyaSync Retrofit Device seamlessly attached to a legacy vital signs monitor in an active ICU setting"
+                                fill
+                                className="object-cover"
+                            />
+                            <div className="absolute inset-0 bg-emerald/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
                         <p className="mt-6 text-navy-dark/60 font-medium">ArogyaSync device seamlessly attached to a legacy monitor in an active ICU setting.</p>
                     </motion.div>
                 </div>
