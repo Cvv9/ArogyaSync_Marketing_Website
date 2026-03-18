@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Check, Mail, MapPin, Send, Activity } from "lucide-react";
 import { Button } from "@/components/ui/Button";
@@ -51,6 +51,16 @@ const pricing = [
 ];
 
 export function PricingAndContact() {
+    const [submitted, setSubmitted] = useState(false);
+
+    // CR5-043: Acknowledge form submission instead of silently discarding data.
+    // TODO: Integrate with a backend API (e.g. POST /contact) or third-party
+    // form service (Formspree, HubSpot, etc.) to persist submissions.
+    function handleContactSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+        setSubmitted(true);
+    }
+
     return (
         <section className="py-24 bg-white">
             <div className="container mx-auto px-6">
@@ -137,15 +147,32 @@ export function PricingAndContact() {
                     </div>
 
                     <div className="p-12 rounded-[40px] bg-white border border-soft-gray shadow-2xl">
-                        <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+                        {submitted ? (
+                            <motion.div
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                className="flex flex-col items-center justify-center py-16 text-center"
+                            >
+                                <div className="w-16 h-16 rounded-full bg-emerald/10 flex items-center justify-center mb-6">
+                                    <Check className="w-8 h-8 text-emerald" />
+                                </div>
+                                <h3 className="text-2xl font-display font-bold text-navy-dark mb-3">
+                                    Thank you for your interest!
+                                </h3>
+                                <p className="text-navy-dark/60 max-w-sm">
+                                    Our clinical strategy team will be in touch soon to schedule a custom demo for your facility.
+                                </p>
+                            </motion.div>
+                        ) : (
+                        <form className="space-y-6" onSubmit={handleContactSubmit}>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
                                     <label className="text-xs font-bold uppercase tracking-widest text-navy-dark/40 ml-1">Full Name</label>
-                                    <input type="text" placeholder="Dr. Abhinav Singh" className="w-full h-14 px-6 rounded-2xl bg-soft-gray/30 border border-soft-gray focus:border-emerald outline-none transition-all" />
+                                    <input type="text" required placeholder="Dr. Abhinav Singh" className="w-full h-14 px-6 rounded-2xl bg-soft-gray/30 border border-soft-gray focus:border-emerald outline-none transition-all" />
                                 </div>
                                 <div className="space-y-2">
                                     <label className="text-xs font-bold uppercase tracking-widest text-navy-dark/40 ml-1">Hospital Name</label>
-                                    <input type="text" placeholder="Department of Cardiology" className="w-full h-14 px-6 rounded-2xl bg-soft-gray/30 border border-soft-gray focus:border-emerald outline-none transition-all" />
+                                    <input type="text" required placeholder="Department of Cardiology" className="w-full h-14 px-6 rounded-2xl bg-soft-gray/30 border border-soft-gray focus:border-emerald outline-none transition-all" />
                                 </div>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -167,6 +194,7 @@ export function PricingAndContact() {
                                 <Send className="ml-3 w-5 h-5 transition-transform group-hover:translate-x-1" />
                             </Button>
                         </form>
+                        )}
                     </div>
                 </div>
             </div>

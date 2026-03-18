@@ -25,14 +25,18 @@ function ResetPasswordForm() {
   const [showConfirm, setShowConfirm] = useState(false);
   const [error, setError] = useState("");
 
-  // Validate token on mount
+  // CR5-042: AbortController prevents setting state on unmounted component
   useEffect(() => {
     if (!token) {
       setStatus("invalid");
       return;
     }
 
-    fetch(`${API_URL}/resetpassword?token=${encodeURIComponent(token)}`)
+    const controller = new AbortController();
+
+    fetch(`${API_URL}/resetpassword?token=${encodeURIComponent(token)}`, {
+      signal: controller.signal,
+    })
       .then(async (res) => {
         if (res.ok) {
           const data = await res.json();
@@ -44,10 +48,13 @@ function ResetPasswordForm() {
           setStatus("invalid");
         }
       })
-      .catch(() => {
+      .catch((err) => {
+        if (err.name === "AbortError") return;
         setError("Unable to reach the server. Please try again later.");
         setStatus("invalid");
       });
+
+    return () => controller.abort();
   }, [token]);
 
   function validatePassword(pw: string): string | null {
