@@ -18,6 +18,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://arogyasync.com"),
   title: "ArogyaSync | Transform Legacy Monitors Into Smart Healthcare Systems",
   description:
     "AI-powered retrofit solution delivering 85% cost savings with 95% OCR accuracy.",
@@ -40,10 +41,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
-        <meta
-          httpEquiv="Content-Security-Policy"
-          content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; frame-ancestors 'none';"
-        />
+        {/* CSP set via HTTP headers on hosting platform — meta tag CSP with script-src 'self'
+            blocks Next.js inline bootstrap scripts in static export */}
       </head>
       <body
         className={`${inter.variable} ${dmSans.variable} ${jetbrainsMono.variable} font-body antialiased`}
