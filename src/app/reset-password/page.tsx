@@ -82,12 +82,18 @@ function ResetPasswordForm() {
 
     setStatus("submitting");
 
+    // CR6-161: Add AbortController with timeout to prevent indefinite hang
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 15000);
+
     try {
       const res = await fetch(`${API_URL}/resetpassword`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token, email, password, confirm_password: confirmPassword }),
+        signal: controller.signal,
       });
+      clearTimeout(timeoutId);
 
       if (res.ok) {
         setStatus("success");
@@ -96,8 +102,13 @@ function ResetPasswordForm() {
         setError(data?.error ?? "Password reset failed. Please try again.");
         setStatus("form");
       }
-    } catch {
-      setError("Unable to reach the server. Please try again later.");
+    } catch (err: any) {
+      clearTimeout(timeoutId);
+      if (err.name === "AbortError") {
+        setError("Request timed out. Please try again.");
+      } else {
+        setError("Unable to reach the server. Please try again later.");
+      }
       setStatus("form");
     }
   }
