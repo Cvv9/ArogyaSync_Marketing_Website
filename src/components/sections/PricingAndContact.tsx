@@ -187,7 +187,7 @@ export function PricingAndContact() {
                             </div>
                             <div className="space-y-2">
                                 <label className="text-xs font-bold uppercase tracking-widest text-navy-dark/40 ml-1">Project Details</label>
-                                <textarea placeholder="Tell us about your facility's specific monitoring challenges..." className="w-full h-40 p-6 rounded-2xl bg-soft-gray/30 border border-soft-gray focus:border-emerald outline-none transition-all resize-none" />
+                                <textarea required placeholder="Tell us about your facility's specific monitoring challenges..." className="w-full h-40 p-6 rounded-2xl bg-soft-gray/30 border border-soft-gray focus:border-emerald outline-none transition-all resize-none" />
                             </div>
                             <Button variant="primary" className="w-full h-16 rounded-2xl font-bold text-lg group">
                                 Request Custom Demo
