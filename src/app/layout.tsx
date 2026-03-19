@@ -29,6 +29,10 @@ export const metadata: Metadata = {
     description: "AI-powered retrofit healthcare monitoring system",
     images: ["/images/Gemini_Generated_Image_t3awcgt3awcgt3aw-removebg-preview.png"],
   },
+  // CR6-159: Add Content Security Policy headers
+  other: {
+    "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; frame-ancestors 'none';",
+  },
 };
 import { CustomCursor } from "@/components/ui/CustomCursor";
 
