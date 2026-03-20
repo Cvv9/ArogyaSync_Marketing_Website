@@ -120,10 +120,11 @@ const contact = [
   { icon: MapPin, text: "IIT Patna Incubation Center, Bihar"     },
 ];
 
+// CR6-162: Replace placeholder "#" links with actual social media URLs
 const social = [
-  { Icon: Linkedin, href: "#" },
-  { Icon: Twitter,  href: "#" },
-  { Icon: Github,   href: "#" },
+  { Icon: Linkedin, href: "https://linkedin.com/company/arogyasync" },
+  { Icon: Twitter,  href: "https://twitter.com/arogyasync" },
+  { Icon: Github,   href: "https://github.com/arogyasync" },
 ];
 
 const statusItems = [

@@ -228,13 +228,14 @@ const DataPacket = ({ delay, color }:DataPacketProps) => (
 // ─────────────────────────────────────────────────────────────────
 const VitalRow = ({ icon: Icon, label, value, unit, color, doAnim, delta }:VitalRowProps) => {
   const [val, setVal] = useState(value);
+  // CR5-053: Added doAnim and delta to the dependency array to satisfy exhaustive-deps
   useEffect(() => {
     if (!doAnim) return;
     const t = setInterval(() => {
       setVal(v => Math.round((v + (Math.random() > 0.5 ? delta : -delta)) * 10) / 10);
     }, 1800 + Math.random() * 700);
     return () => clearInterval(t);
-  }, []);
+  }, [doAnim, delta]);
   return (
     <div className="flex items-center gap-2.5 py-2 px-3 rounded-xl"
       style={{ background: color + "08", border: `1px solid ${color}18` }}>

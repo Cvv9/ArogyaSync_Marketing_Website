@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [main]
 
+# CR4-040: Explicit least-privilege permissions
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
